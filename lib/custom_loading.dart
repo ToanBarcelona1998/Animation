@@ -8,11 +8,11 @@ class CustomCircle extends CustomPainter {
 
   static const double _strokeWidthPainter = 1;
 
-  static double _radiusCircle = 5;
+  static double _radiusCircle = 3;
 
   static const double _paddingCirlce=10;
 
-  double ?dy;
+  List<double> ?dy;
 
 
   CustomCircle({this.dy});
@@ -34,20 +34,24 @@ class CustomCircle extends CustomPainter {
       ..lineTo((size.width / 2) + (_widthRectangle / 2), (size.height / 2) + (_heightRectangle / 2))
       ..lineTo((size.width / 2) + (_widthRectangle / 2), (size.height / 2) - (_heightRectangle / 2))
       ..close();
-
     //Paint Rectangle
-    canvas.drawPath(pathRectangle, paintRectangle);
+   // canvas.drawPath(pathRectangle, paintRectangle);
+
+    RRect rrect=RRect.fromRectAndRadius(Rect.fromCenter(center: Offset(size.width/2,size.height/2), width: _widthRectangle, height: _heightRectangle-15), Radius.circular(10));
+    canvas.drawRRect(rrect, paintRectangle);
 
     double dx=(size.width/2)-(_widthRectangle/2) + _paddingCirlce;
+    double equidistant= 0.0;
     for(int i=0;i<_colorCircle.length;i++){
-      dx=dx+((_widthRectangle - 2 * _paddingCirlce - 2 * _radiusCircle)/3) + i*_radiusCircle;
-      Paint paintCircle=Paint()..style=PaintingStyle.stroke..color=_colorCircle[i]..strokeWidth=_strokeWidthPainter;
-      canvas.drawCircle(Offset(dx,dy!*(i/5)), _radiusCircle, paintCircle);
+      dx=dx+equidistant+(i+1)*_radiusCircle;
+      equidistant=(_widthRectangle - 2 * _paddingCirlce - 6 * _radiusCircle)/3 +_radiusCircle/3;
+      Paint paintCircle=Paint()..style=PaintingStyle.fill..color=_colorCircle[i]..strokeWidth=_strokeWidthPainter;
+      canvas.drawCircle(Offset(dx,dy![i]), _radiusCircle, paintCircle);
     }
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
 }
