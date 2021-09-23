@@ -26,8 +26,9 @@ class CustomCircle extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Paint paintRectangle = Paint()
       ..style = PaintingStyle.fill
-      ..color = _colorRectangle.withOpacity(0.4)
+      ..color = _colorRectangle.withOpacity(0.3)
       ..strokeWidth = _strokeWidthPainter;
+    //
     Path pathRectangle = Path()
       ..moveTo((size.width / 2) - (_widthRectangle / 2), (size.height / 2) - (_heightRectangle / 2))
       ..lineTo((size.width / 2) - (_widthRectangle / 2), (size.height / 2) + (_heightRectangle / 2))
