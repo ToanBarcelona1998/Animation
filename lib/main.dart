@@ -1,3 +1,4 @@
+import 'package:custom_loading_animation/button_loading/button_loding.dart';
 import 'package:custom_loading_animation/custom_loading.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: ButtonLoading()
+      //HomePage(),
     );
   }
 }
