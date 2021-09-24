@@ -1,4 +1,6 @@
 import 'package:custom_loading_animation/button_loading/button_loding.dart';
+import 'package:custom_loading_animation/custom_circle_progess_bar/show_circle_file.dart';
+import 'package:custom_loading_animation/custom_dialog/custom_dialog.dart';
 import 'package:custom_loading_animation/custom_loading.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ButtonLoading()
+      home: ShowCircleProgessFile()
       //HomePage(),
     );
   }
