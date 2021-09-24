@@ -1,5 +1,6 @@
 import 'package:custom_loading_animation/custom_easy_loading/custom_easy_loading.dart';
 import 'package:custom_loading_animation/custom_loading.dart';
+import 'package:custom_loading_animation/custom_wave_animation/wave_animation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,44 +12,48 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: EasyLoading(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  EasyLoading.show(type: LoadingType.progress, message: "Loading");
-                  double i = 0.0;
-                  while (i < 100.0) {
-                    i = i + 10.0;
-                    await Future.delayed(Duration(milliseconds: 400));
-                    EasyLoading.updateProgress(progress: i, message: "${i.toInt()} %");
-                    if(i==80.0){
-                      EasyLoading.dismiss();
-                      await EasyLoading.showErrorAndAutoDismiss(message: "Có lỗi xảy ra trong quá trình xử lý");
-                    }
-                  }
-                  EasyLoading.dismiss();
-                  await EasyLoading.showSuccessAndAutoDismiss(message: "Hoàn thành");
-                },
-                child: Text("Show"),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-                },
-                child: Text("Hide"),
-              ),
-            ],
-          ),
-        ),
-        duration: Duration(milliseconds: 2600),
+      body: Center(
+        child: WaveContainer(height: 100, width: size.width),
       ),
+      // EasyLoading(
+      //   child: Container(
+      //     height: MediaQuery.of(context).size.height,
+      //     width: MediaQuery.of(context).size.width,
+      //     child: Column(
+      //       crossAxisAlignment: CrossAxisAlignment.center,
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       children: [
+      //         ElevatedButton(
+      //           onPressed: () async {
+      //             EasyLoading.show(type: LoadingType.progress, message: "Loading");
+      //             double i = 0.0;
+      //             while (i < 100.0) {
+      //               i = i + 10.0;
+      //               await Future.delayed(Duration(milliseconds: 400));
+      //               EasyLoading.updateProgress(progress: i, message: "${i.toInt()} %");
+      //               if(i==80.0){
+      //                 EasyLoading.dismiss();
+      //                 await EasyLoading.showErrorAndAutoDismiss(message: "Có lỗi xảy ra trong quá trình xử lý");
+      //               }
+      //             }
+      //             EasyLoading.dismiss();
+      //             await EasyLoading.showSuccessAndAutoDismiss(message: "Hoàn thành");
+      //           },
+      //           child: Text("Show"),
+      //         ),
+      //         ElevatedButton(
+      //           onPressed: () async {
+      //             Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+      //           },
+      //           child: Text("Hide"),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      //   duration: Duration(milliseconds: 2600),
+      // ),
     );
   }
 }
