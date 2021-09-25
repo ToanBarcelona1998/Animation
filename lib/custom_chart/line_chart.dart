@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class LineChart extends StatelessWidget {
   LineChart({Key? key}) : super(key: key);
-  static List<double> hamilton = [0, 12, 25, 26, 25, 19, 25, 25, 7, 26, 15, 25];
+  static List<double> hamilton = [0, 12, 0, 0, 25, 19, 25, 25, 7, 0, 15, 8];
   static List<double> bottas = [0, 25, 18, 15, 0, 15, 16, 18, 10, 18, 26, 0];
   static List<double> max = [0, 0, 15, 18, 19, 25, 18, 15, 0, 0, 18, 19];
 
