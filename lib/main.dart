@@ -1,3 +1,4 @@
+import 'package:custom_loading_animation/custom_chart/line_chart.dart';
 import 'package:custom_loading_animation/custom_easy_loading/custom_easy_loading.dart';
 import 'package:custom_loading_animation/custom_loading.dart';
 import 'package:custom_loading_animation/custom_wave_animation/wave_animation.dart';
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: WaveContainer(height: 100, width: size.width),
-      ),
+      body: Center(child: LineChart()),
+      // Center(
+      //   child: WaveContainer(height: 100, width: size.width),
+      // ),
       // EasyLoading(
       //   child: Container(
       //     height: MediaQuery.of(context).size.height,
