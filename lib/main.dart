@@ -2,9 +2,48 @@ import 'package:custom_loading_animation/custom_chart/line_chart.dart';
 import 'package:custom_loading_animation/custom_easy_loading/custom_easy_loading.dart';
 import 'package:custom_loading_animation/custom_loading.dart';
 import 'package:custom_loading_animation/custom_wave_animation/wave_animation.dart';
+import 'package:custom_loading_animation/save_file/save_file.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+const MethodChannel channel = MethodChannel("save_file");
+const MethodChannel platform = MethodChannel('dexterx.dev/flutter_local_notifications_example');
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('ic_launcher');
+
+  /// Note: permissions aren't requested here just to demonstrate that can be
+  /// done later
+  final IOSInitializationSettings initializationSettingsIOS = IOSInitializationSettings(
+      requestAlertPermission: false,
+      requestBadgePermission: false,
+      requestSoundPermission: false,
+      onDidReceiveLocalNotification: (
+        int id,
+        String? title,
+        String? body,
+        String? payload,
+      ) async {});
+  const MacOSInitializationSettings initializationSettingsMacOS = MacOSInitializationSettings(
+    requestAlertPermission: false,
+    requestBadgePermission: false,
+    requestSoundPermission: false,
+  );
+
+  final InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: initializationSettingsIOS,
+    macOS: initializationSettingsMacOS,
+  );
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings, onSelectNotification: (String? payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: $payload');
+    }
+  });
   runApp(MaterialApp(home: MyApp()));
 }
 
@@ -15,7 +54,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(child: LineChart()),
+      body: SaveFile(url: "https://binhminhdigital.com/StoreData/PageData/3429/Tim-hieu-ve-ban-quyen-hinh-anh%20(3).jpg",),
+      //Center(child: LineChart()),
       // Center(
       //   child: WaveContainer(height: 100, width: size.width),
       // ),
