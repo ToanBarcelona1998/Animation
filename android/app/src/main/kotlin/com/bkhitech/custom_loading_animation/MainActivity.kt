@@ -25,9 +25,9 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
             call, result ->
             if (call.method == "save"){
-                var filePath : String = call.argument("file")
+                var filePath : String = call.argument("file")!!
 
-                var name : String = call.argument("name")
+                var name : String = call.argument("name")!!
 
                 var message : String = saveFile(filePath,name)
                 result.success(message)

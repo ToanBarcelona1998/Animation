@@ -1,11 +1,9 @@
-import 'package:custom_loading_animation/custom_chart/line_chart.dart';
-import 'package:custom_loading_animation/custom_easy_loading/custom_easy_loading.dart';
 import 'package:custom_loading_animation/custom_loading.dart';
-import 'package:custom_loading_animation/custom_wave_animation/wave_animation.dart';
-import 'package:custom_loading_animation/save_file/save_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import 'appbar/custom_appBar.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -53,8 +51,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SaveFile(url: "https://binhminhdigital.com/StoreData/PageData/3429/Tim-hieu-ve-ban-quyen-hinh-anh%20(3).jpg",),
+    return MyHomePage(
+      //body: SaveFile(url: "https://binhminhdigital.com/StoreData/PageData/3429/Tim-hieu-ve-ban-quyen-hinh-anh%20(3).jpg",),
       //Center(child: LineChart()),
       // Center(
       //   child: WaveContainer(height: 100, width: size.width),
@@ -236,3 +234,4 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 }
+
